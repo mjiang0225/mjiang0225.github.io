@@ -1,0 +1,79 @@
+/*Menglin Jiang*/
+body {background-color: rgb(239, 236, 222);}
+
+/*Q1*/
+#header{
+    height: 220px;
+    width: 100%;
+    background-color: rgb(69, 74, 76);
+    color: rgb(239, 236, 222);
+    font-family: verdana;
+}
+/*Q2*/
+#text{
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#header{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/*Q3*/
+.header{   
+    -webkit-column-count: 2;
+    -moz-column-count: 2; 
+    column-count: 2;
+
+    -webkit-column-gap: 40px;
+    -moz-column-gap: 40px;
+    column-gap: 40px;
+}
+
+.information{
+    -webkit-column-count: 2;
+    -moz-column-count: 2; 
+    column-count: 2;
+
+    -webkit-column-gap: 40px;
+    -moz-column-gap: 40px;
+    column-gap: 40px;
+
+    -webkit-column-rule: 4px dashed;
+    -moz-column-rule: 4px dashed;
+    column-rule: 4px dashed;
+}
+
+.work{
+    -webkit-column-count: 2;
+    -moz-column-count: 2; 
+    column-count: 2;
+
+    -webkit-column-gap: 40px;
+    -moz-column-gap: 40px;
+    column-gap: 40px;
+
+    -webkit-column-rule: 4px dashed;
+    -moz-column-rule: 4px dashed;
+    column-rule: 4px dashed;
+}
+
+/*Q4*/
+.information img{
+    max-width: 300px;
+    width: 300px;
+    height: 500;
+}
+
+/*Q5*/
+.work{
+    text-shadow: 1px 1px rgb(158, 178, 231);
+    text-align: center;
+    text-indent: 10%;
+    text-transform: capitalize;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    line-height: 1.2pc;
+}
