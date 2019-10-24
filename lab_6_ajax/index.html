@@ -16,14 +16,16 @@
     </div>
     <script>
       function getRandom(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
         return Math.floor(Math.random() * (max - min) + min);
       }
       function loadData() {
       fetch('ajax_sample.json')
         .then(res => res.json())
-        .then(data => data.map(c => c.code)) 
-        .then(data => {
-          document.querySelector(".content").innerText = data
+        .then(data => data.map(c => c.name + " (" + c.code + ")"))
+        .then(data => displayData(data));
+    }
       
       function displayData(array){
         const element = document.querySelector(".content");
