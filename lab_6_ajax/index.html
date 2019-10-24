@@ -16,27 +16,32 @@
     </div>
     <script>
       function getRandom(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
         return Math.floor(Math.random() * (max - min) + min);
       }
-
       function loadData() {
-        fetch('ajax_sample.json')
-          .then(res => res.json())
-          .then(data => data.map(c => c.code))
-          .then(data => { displayData(data));
-        }
+      fetch('ajax_sample.json')
+        .then(res => res.json())
+        .then(data => data.map(c => c.code)) 
+        .then(data => {
+          document.querySelector(".content").innerText = data
       
       function displayData(array){
         const element = document.querySelector(".content");
         element.innerHTML = "";
         const selectNumber = getRandomIntInclusive(0, 242);
-        let el = document.createElement("li");
+        let el = document.createElement("p");
+        el.innerText = i + ".  " + array[random;
+        instructions.appendChild(el);
+
         for(let i = 1; i <= 15; i++) {
         let random = getRandom(0, 242);
         while(el.includes(random)){
           continue;
+
+        return data; /
+        })
+        .then(res => )
+        ;
       }
 
       }
