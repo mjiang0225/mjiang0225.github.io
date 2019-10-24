@@ -20,6 +20,7 @@
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min) + min);
       }
+
       function loadData() {
       fetch('ajax_sample.json')
         .then(res => res.json())
@@ -33,15 +34,11 @@
         let el = document.createElement("p");
         el.innerText = i + ".  " + array[random];
         element.appendChild(el);
-        
+
         let p = [];
         for(let i = 1; i <= 15; i++) {
-          let random = getRandom(0, 242);
-          while(el.includes(random)){
-          continue;
-
+          const selectNumber = getRandom(0, 242);
         }
-
       }
     </script>
   </body>
