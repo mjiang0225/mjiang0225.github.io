@@ -1,57 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Menglin Jiang's Resume </title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Test AJAX page</title>
+  <link rel="stylesheet" type="text/css" href="./lab_styles.css">
 </head>
+
 <body>
-
-  <div id="header">
-    <p style="font-size:50px; font-family: Comic Sans MS, cursive, sans-serif;">MENGLIN JIANG</p>
-    <p><span>&#127968;</span>5315 Smiths Cove Ln, Greenbelt, MD 20770</p>
-    <p><span>&#9990;</span>(703)508-2861 </p>
-    <span>&#9993;</span><a href="google.com">jiangmenglin0225@gmail.com</a>
-  </div>
-
-  <div id="text">
-    <h2><u>Image</u></h2>
-    <div class="information">
-      <img src="me.jpg" alt="me"/>
-      <p style="font-family: Comic Sans MS, cursive, sans-serif;">Professional Goal: To acquire a part-time internship
-        position in the Information Science where I can utilize my skills and knowledge in information technology and
-        business with special interest in network systems management.</p>
-    </div>
-
-    <div class="works">
-      <h2><u>Experience</u></h2>
-      <div class="work">
-        <h3>Providence Elementary School</h3>
-        <p>(September 2017 - December 2017)</p>
-        <i>Teacher Assistant</i>
-        <p>Worked with Chinese classes in grades K, 1 and 3.</p>
-        <p>Individually tutored students with learning disabilities and assisted with classroom management. </p>
-        <p>Assisted teachers with clerical duties and preparations for lessons.</p>
-      </div>
-
-      <div class="work">
-        <h3>Bank of China</h3>
-        <p>(June 2018 - July 2018)</p>
-        <i>Internship</i>
-        <p>Assisted customers in financial transactions and developed communication skills with customers.</p>
-        <p>Provide new services and products to potential customers to enhance their awareness.</p>
-        <p>Delivered prompt, accurate and quality customer service.</p>
-      </div>
-
-      <div class="work">
-        <h3>Civedata (Zhejiang) Information Technology Co., Ltd</h3>
-        <p>(June 2019 - Auguest 2019)</p>
-        <i>Internship</i>
-        <p>Assist supervisor in new product development, complete new product design concept, design drawing, etc.</p>
-        <p>Assist supervisor to push the progress of database development and achieve the delivery target on time.</p>
-        <p>Responsible for writing the database and saving the data sent by customers to the database.</p>
-      </div>
+  <div class="container">
+    <div class="wrapper">
+      <div class="header">UMD Bus Routes</div>
+      <button class="button" onclick="loadData()">Load Some JSON</button>
+      <div class="content"></div>
+      <div class="footer"></div>
     </div>
   </div>
-
+  <script>
+    function loadData() {
+      fetch('https://api.umd.io/v0/bus/routes')
+        .then(res => res.json())
+        .then(res => {
+          // you can now work in this area
+          console.log(res);
+          return res;
+        })
+        .then(res => res.map(b => {
+          let bus_name = b.route_id.toUpperCase();
+          if(b.title.includes(bus_name)) {
+            bus_name = b.title;
+          } else {
+            bus_name += " " + b.title;
+          }
+          return bus_name;
+        }))
+        .then(data => {
+          displayData(data);
+          return data;
+        })
+        .then(data => {
+          let t = data.find(function(e) {
+            return e == "104 College Park Metro";
+          });
+          document.querySelector(".header").innerText += " " + t;
+          window.document.title = t;
+        });
+    }
+    function displayData(array) {
+      const element = document.querySelector(".content");
+      element.innerHTML = "";
+      for(let i = 1; i <= array.length; i++) {
+        let el = document.createElement("p");
+        el.innerText = i.toString() + ". " + array[i-1];
+        element.appendChild(el);
+      }
+    }
+  </script>
 </body>
+
 </html>
+© 2019 GitHub, Inc.
