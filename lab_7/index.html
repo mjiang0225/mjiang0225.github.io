@@ -14,8 +14,6 @@
         <div class="footer"></div>
       </div>
     </div>
-
-    <p id="bus"></p>
     <script>
       function loadData() {
         console.log('fetch'); // confirm code is running on click
@@ -52,7 +50,7 @@
 
           function displayData(array) {
               const element = document.querySelector(".content");
-              document.getElementById("bus").innerHTML = "";
+              document.innerHTML = "";
               for(let i = 1; i <= array.length; i++) {
                 let el = document.createElement("t");
                 el.innerText = i.toString() + ". " + array[i-1];
