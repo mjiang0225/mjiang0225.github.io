@@ -26,16 +26,27 @@
           return res;
         })
         .then(res => res.data.map(c => {
-          let bus_name = c.route_id();
-          if(c.title.includes(bus_name)){
-            bus_name = c.title;
+          let bus_route = c.route_id();
+          if(c.title.includes(bus_route)){
+            bus_route = c.title;
               } else {
-                bus_name += " " +c.title;
+                bus_route += " " +c.title;
               }
-              return bus_name;
+              return bus_route;
           }))
+        
+        .then (data => 
+          {displayData(data);
+          return data;
+        })
 
-        .then(codes => document.querySelector(".content").innerText = codes);
+        .then (data =>
+          let t = data.find(function(e){
+            return e == "UMD Bus Routes 143 Greenbelt"
+          });
+          document.querySelector(".header").innerText += " " + t;
+          window.document.title = t;
+          });
     }
   </script>
 </body>
