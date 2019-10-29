@@ -23,7 +23,7 @@
             console.log(res); // logging step to check what we got
             return res;
           })
-          .then(res => res.data.map(c => {
+          .then(res => res.map(c => {
             let bus_route = c.route_id.toString();
             if(c.title.includes(bus_route)){
               bus_route = c.title;
@@ -43,7 +43,7 @@
             let q = data.find(function (r) {
             return r == "143 Greenbelt";
           });
-            
+
         });
 
           function displayData(array) {
