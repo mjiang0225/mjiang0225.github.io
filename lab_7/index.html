@@ -41,10 +41,11 @@
 
           .then(data => {
             let q = data.find(function (r) {
-            return r == "143 Greenbelt";
+              return r == "143 Greenbelt";
+            });
+            let t = "UMD Bus Routes"
+            document.querySelector(".header").innerText = t +" " + q ;
           });
-
-        });
 
           function displayData(array) {
               const element = document.querySelector(".content");
