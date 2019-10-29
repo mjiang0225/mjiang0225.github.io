@@ -19,20 +19,20 @@
     <script>
       function loadData() {
         console.log('fetch'); // confirm code is running on click
-        
         fetch('https://api.umd.io/v0/bus/routes')
           .then(res => res.json())
           .then(res => {
             console.log(res); // logging step to check what we got
             return res;
           })
-          .then(res => res.map(c => {
-            let bus_route = c.route_id();
+          .then(res => res.data.map(c => {
+            let bus_route = c.route_id.toString();
             if(c.title.includes(bus_route)){
               bus_route = c.title;
-                } else {
-                  bus_route += " " +c.title;
-                }
+            } 
+              else {
+                bus_route += " " +c.title;
+              }
                 return bus_route;
             }))
 
@@ -53,9 +53,8 @@
           function displayData(array) {
               const element = document.querySelector(".content");
               document.getElementById("bus").innerHTML = "";
-              let f = [];
               for(let i = 1; i <= array.length; i++) {
-                let el = document.createElement("b");
+                let el = document.createElement("t");
                 el.innerText = i.toString() + ". " + array[i-1];
                 element.appendChild(el);
             }}
