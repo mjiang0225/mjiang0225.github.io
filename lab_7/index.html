@@ -14,17 +14,19 @@
         <div class="footer"></div>
       </div>
     </div>
+
+    <p id="bus"></p>
     <script>
       function loadData() {
         console.log('fetch'); // confirm code is running on click
-
+        
         fetch('https://api.umd.io/v0/bus/routes')
           .then(res => res.json())
           .then(res => {
             console.log(res); // logging step to check what we got
             return res;
           })
-          .then(res => res.map(c => {
+          .then(res => res.data.map(c => {
             let bus_route = c.route_id();
             if(c.title.includes(bus_route)){
               bus_route = c.title;
@@ -50,7 +52,7 @@
 
           function displayData(array) {
               const element = document.querySelector(".content");
-              element.innerHTML = "";
+              document.getElementById("bus").innerHTML = "";
               let f = [];
               for(let i = 1; i <= array.length; i++) {
                 let el = document.createElement("b");
