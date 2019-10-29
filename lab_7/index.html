@@ -16,12 +16,10 @@
     </div>
     <script>
       function loadData() {
-        console.log('fetch'); // confirm code is running on click
-        fetch('/api')
-        fetch('https://api.umd.io/v0/bus/routes')
+        fetch("https://api.umd.io/v0/bus/routes")
           .then(res => res.json())
           .then(res => {
-            console.log(res); // logging step to check what we got
+            console.log(res);
             return res;
           })
           .then(res => res.data.map(c => {
@@ -34,12 +32,12 @@
                 return bus_route;
             }))
 
-          .then (data =>
-            {displayData(data);
+          .then(data => {
+            displayData(data);
             return data;
           })
 
-            let bus_route = [
+          let bus_route = [
             {"route_id":"142","title":"142 Columbia Park & Ride"},
             {"route_id":"143","title":"143 Greenbelt"},
             {"route_id":"104","title":"104 College Park Metro"}
@@ -47,16 +45,16 @@
 
             let bus_route = bus_route.find(bus_route => route_id === '143 Greenbelt')
             console.log(bus_route);
+         }
 
-
-            function displayData(array) {
-              const element = document.querySelector(".content");
-              element.innerHTML = "";
-              for(let i = 1; i <= array.length; i++) {
-                let el = document.createElement("p");
-                el.innerText = i.toString() + ". " + array;
-                element.appendChild(el);
-            }}
+          function displayData(array) {
+          const element = document.querySelector(".content");
+          element.innerHTML = "";
+            for (let i = 1; i <= array.length; i++) {
+            let el = document.createElement("p");
+            el.innerText = i.toString() + ". " + array[i - 1];
+            element.appendChild(el);
+          }
       }
     </script>
   </body>
