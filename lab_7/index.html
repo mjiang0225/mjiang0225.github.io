@@ -19,34 +19,33 @@
         fetch("https://api.umd.io/v0/bus/routes")
           .then(res => res.json())
           .then(res => {
+            // you can now work in this area
             console.log(res);
             return res;
           })
-          .then(res => res.data.map(c => {
-            let bus_route = c.route_id();
-            if(c.title.includes(bus_route)){
-              bus_route = c.title;
-                } else {
-                  bus_route += " " +c.title;
-                }
-                return bus_route;
-            }))
-
+          .then(res =>
+            res.map(b => {
+              let bus_name = b.route_id.toUpperCase();
+              if (b.title.includes(bus_name)) {
+                bus_name = b.title;
+              } else {
+                bus_name += " " + b.title;
+              }
+              return bus_name;
+            })
+          )
           .then(data => {
             displayData(data);
             return data;
           })
-
-          let bus_route = [
-            {"route_id":"142","title":"142 Columbia Park & Ride"},
-            {"route_id":"143","title":"143 Greenbelt"},
-            {"route_id":"104","title":"104 College Park Metro"}
-            ];
-
-            let bus_route = bus_route.find(bus_route => route_id === '143 Greenbelt')
-            console.log(bus_route);
-         }
-
+          .then(data => {
+            let t = data.find(function(e) {
+              return e == "104 College Park Metro";
+            });
+            document.querySelector(".header").innerText += " " + t;
+            window.document.title = t;
+          });
+       }
           function displayData(array) {
           const element = document.querySelector(".content");
           element.innerHTML = "";
