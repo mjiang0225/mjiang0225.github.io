@@ -39,22 +39,23 @@
             return data;
           })
 
-            let arr = [
-            {"route_id":"142","title":"142 Columbia Park & Ride"},
-            {"route_id":"143","title":"143 Greenbelt"},
-            {"route_id":"104","title":"104 College Park Metro"}
-            ];
+          .then(data => {
+            let q = data.find(function (r) {
+            return r == "143 Greenbelt";
+          });
+            let t = "UMD Bus Routes";
+            r = data.toString();  
+            document.querySelector(".header").innerText  = t +" " + q ;
+         
+        });
 
-            let bus_route = arr.find(bus_route => route_id === '143 Greenbelt')
-            console.log(bus_route);
-
-
-            function displayData(array) {
+          function displayData(array) {
               const element = document.querySelector(".content");
               element.innerHTML = "";
+              let f = [];
               for(let i = 1; i <= array.length; i++) {
-                let el = document.createElement("p");
-                el.innerText = i.toString() + ". " + array;
+                let el = document.createElement("b");
+                el.innerText = i.toString() + ". " + array[i-1];
                 element.appendChild(el);
             }}
       }
