@@ -17,7 +17,7 @@
     <script>
       function loadData() {
         console.log('fetch'); // confirm code is running on click
-        fetch('/api')
+        
         fetch('https://api.umd.io/v0/bus/routes')
           .then(res => res.json())
           .then(res => {
@@ -46,7 +46,6 @@
             let t = "UMD Bus Routes";
             r = data.toString();  
             document.querySelector(".header").innerText  = t +" " + q ;
-         
         });
 
           function displayData(array) {
