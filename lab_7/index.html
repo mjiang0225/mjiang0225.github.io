@@ -43,16 +43,15 @@
             let q = data.find(function (r) {
             return r == "143 Greenbelt";
           });
-            let t = "UMD Bus Routes";
-            r = data.toString();  
-            document.querySelector(".header").innerText  = t +" " + q ;
+            
         });
 
           function displayData(array) {
               const element = document.querySelector(".content");
-              document.innerHTML = "";
+              element.innerHTML = "";
+              let p = [];
               for(let i = 1; i <= array.length; i++) {
-                let el = document.createElement("t");
+                let el = document.createElement("p");
                 el.innerText = i.toString() + ". " + array[i-1];
                 element.appendChild(el);
             }}
