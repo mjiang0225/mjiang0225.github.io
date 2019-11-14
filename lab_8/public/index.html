@@ -19,24 +19,31 @@
     <script>
       function loadData() {
         console.log("fetch"); // confirm code is running on click
-        fetch("/api")
+        fetch("https://api.umd.io/v0/courses/list")
           .then(res => res.json())
-          .then(res => {
-            console.log(res); // logging step to check what we got
-            return res;
-          })
-          .then(res => res.data.map(c => c.course_id))
-          .then(
-            codes => (document.querySelector(".content").innerText = codes)
-          );
-          
-        function displayData(array) {
-          const element = document.querySelector(".content");
-          element.innerHTML = "";
-          for (let i = 1; i <= array.length; i++) {
-            let el = document.createElement("p");
-            el.innerText = i.toString() + ". " + array[i - 1];
-            element.appendChild(el);
+          .then(res => {      // Make array for use in list
+            const CourseArray = res.map(c => c.course_id + ": " + c.name);
+            const selectedCourse = CourseArray.find(f => f.includes("INST"));
+            const newHeaderName = `INST Courses`;
+            document.querySelector(".header").innerText = newHeaderName;
+            const filterItems = array => {
+              return CourseArray.filter(el => el.indexOf(array) > -1);
+            };
+            console.log(filterItems("INST"));
+            const InstCourses = filterItems("INST");
+            makeListInHTML(InstCourses);
+          });
+
+        function makeListInHTML(array) {
+          const htmlTarget = document.querySelector(".content");
+          htmlTarget.innerHTML = "";
+          let el1 = document.createElement("ul");
+          el1.className = "list";
+          htmlTarget.appendChild(el1);
+          for (let i = 0; i < array.length; i++) {
+            let el = document.createElement("li");
+            el.innerText = array[i];
+            htmlTarget.appendChild(el);
           }
         }
       }
