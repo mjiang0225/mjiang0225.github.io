@@ -18,18 +18,17 @@
     </div>
     <script>
     function loadData() {
-      console.log('fetch'); 
-      fetch('/api')
-      .then(res => res.json())
-        .then(res => {
-          console.log(res); 
+        console.log("fetch"); // confirm code is running on click
+        fetch("/api")
+          .then(res => res.json())
+          .then(res => {
+            console.log(res);
           return res;
         })
-
-        .then(res => res.data.map(c => c.course_id))
-        .then(courses => {
+           .then(res => res.data.map(c => c.course_id))
+           .then(courses => {
           
-        infoSci = [];
+            infoSci = [];
             for (let i = 0; i < temp.data.length; i++) {
               console.log(temp.data[i].dept);
               if (temp.data[i].dept_id == "INST") {
@@ -40,21 +39,19 @@
             console.log(infoSciCourses);
             return res;
           })
-
           .then(res => {
             let view = document.querySelector(".content");
             view.innerHTML = "";
             let list = "";
             for (let i = 0; i < infoSciCourses.length; i++) {
-              //turns array into list
+
               list += "<li>" + infoSciCourses[i] + "</li>";
             }
-            view.innerHTML = "<ol>" + list + "</ol>"; //display list on page
+            view.innerHTML = "<ol>" + list + "</ol>";
             console.log(res);
             return res;
           });
       }
-  
     </script>
   </body>
 </html>
