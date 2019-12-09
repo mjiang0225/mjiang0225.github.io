@@ -17,36 +17,44 @@
       </div>
     </div>
     <script>
-      function loadData() {
-        console.log("fetch"); // confirm code is running on click
-        fetch("https://api.umd.io/v0/courses/list")
-          .then(res => res.json())
-          .then(res => {      // Make array for use in list
-            const CourseArray = res.map(c => c.course_id + ": " + c.name);
-            const selectedCourse = CourseArray.find(f => f.includes("INST"));
-            const newHeaderName = `INST Courses`;
-            document.querySelector(".header").innerText = newHeaderName;
-            const filterItems = array => {
-              return CourseArray.filter(el => el.indexOf(array) > -1);
-            };
-            console.log(filterItems("INST"));
-            const InstCourses = filterItems("INST");
-            makeListInHTML(InstCourses);
-          });
+    function loadData() {
+      console.log('fetch'); 
+      fetch('/api')
+      .then(res => res.json())
+        .then(res => {
+          console.log(res); 
+          return res;
+        })
 
-        function makeListInHTML(array) {
-          const htmlTarget = document.querySelector(".content");
-          htmlTarget.innerHTML = "";
-          let el1 = document.createElement("ul");
-          el1.className = "list";
-          htmlTarget.appendChild(el1);
-          for (let i = 0; i < array.length; i++) {
-            let el = document.createElement("li");
-            el.innerText = array[i];
-            htmlTarget.appendChild(el);
-          }
-        }
+        .then(res => res.data.map(c => c.course_id))
+        .then(courses => {
+          
+        infoSci = [];
+            for (let i = 0; i < temp.data.length; i++) {
+              console.log(temp.data[i].dept);
+              if (temp.data[i].dept_id == "INST") {
+                infoSci.push(temp.data[i]);
+              }
+            }
+            infoSciCourses = infoSci.map(i => i.course_id + ": " + i.name);
+            console.log(infoSciCourses);
+            return res;
+          })
+
+          .then(res => {
+            let view = document.querySelector(".content");
+            view.innerHTML = "";
+            let list = "";
+            for (let i = 0; i < infoSciCourses.length; i++) {
+              //turns array into list
+              list += "<li>" + infoSciCourses[i] + "</li>";
+            }
+            view.innerHTML = "<ol>" + list + "</ol>"; //display list on page
+            console.log(res);
+            return res;
+          });
       }
+  
     </script>
   </body>
 </html>

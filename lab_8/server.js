@@ -46,17 +46,9 @@ app.get('/api', (req, res) => {
   fetch(baseURL)
     .then((r) => r.json())
     .then((data) => {
-      let arr = []
-      data.map(b => {
-        if(b.course_id.includes("INST")) {
-          let ret = b.course_id + ": " + b.name;
-          arr.push(ret);
-        }
-      });
-      console.log(arr);
-      return arr;
+      console.log(data);
+      res.send({ data: data });
     })
-    .then((arr) => res.send({data: arr}))
     .catch((err) => {
       console.log(err);
       res.redirect('/error');
